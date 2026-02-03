@@ -1,0 +1,29 @@
+{
+    "manifest_version":3,
+    "name":"NoScroll",
+    "version":"0.1.0",
+
+    "description":"A small extension to remove distracting elements from Instagram",
+
+    "icons":{
+        "48":"icons/instagram-48.png",
+        "96":"icons/instagram-96.png"
+    },
+
+    "browser_specific_settings": {
+        "gecko": {
+            "id":"no-scroll@lem0n3de8.org",
+            "data_collection_permissions": {
+                "required": ["none"]
+            }
+        }
+    }, 
+
+    "content_scripts":[
+        {
+            "matches":["https://www.instagram.com/*"],
+            "js":["noscroll.js"],
+            "run_at": "document_end"
+        }
+    ]
+}
