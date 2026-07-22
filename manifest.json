@@ -12,11 +12,5 @@
                 "required": ["none"]
             }
         }
-    }, 
-
-    "content_scripts":[
-        {
-            "matches": ["https://www.instagram.com/*", "www.instagram.com/*", "instagram.com/*"]
-        }
-    ]
+    }
 }
