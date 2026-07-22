@@ -1,4 +1,5 @@
 const CONFIG = {
+    instagramUrl: "https://www.instagram.com/",
     selectors:{
         homePageStories: '[data-pagelet="story_tray"]',
         reelsTab: 'a[href="/reels/"]',
@@ -28,7 +29,7 @@ function hideHomeFeed(){
     for (const post of posts){
         post.classList.add("hidden-by-extension");
     }
-    
+
     // remove the loading wheel
     const loading = document.querySelector(CONFIG.selectors.loadingState);
     if (loading) {
@@ -36,10 +37,24 @@ function hideHomeFeed(){
     }
 }
 
+function blockReelsPage() {
+  if (window.location.href.includes('instagram.com/reels')) {
+    window.location.href = CONFIG.instagramUrl;
+  }
+}
+
+function blockExplorePage() {
+  if (window.location.href.includes('instagram.com/explore')) {
+    window.location.href = CONFIG.instagramUrl;
+  }
+}
+
 const observer = new MutationObserver(() => {
     hideStories();
     hideReelsTab();
     hideExploreTab();
+    blockExplorePage();
+    blockReelsPage();
     //hideHomeFeed();
 });
 
