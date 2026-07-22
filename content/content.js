@@ -40,7 +40,7 @@ const observer = new MutationObserver(() => {
     hideStories();
     hideReelsTab();
     hideExploreTab();
-    hideHomeFeed();
+    //hideHomeFeed();
 });
 
 observer.observe(document.body, {
