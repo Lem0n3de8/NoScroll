@@ -31,7 +31,7 @@ async function loadFormFromLocalStorage(){
             "redirectReels",
             "redirectExplore"
         ])
-        console.log("Loaded settings:", settings);
+        console.log("Loaded settings");
 
         voidModeCheck.checked = settings.voidMode ?? false;
 
@@ -67,16 +67,6 @@ async function saveFormToLocalStorage(formData) {
         const homeStories = homeStoriesCheck.checked;
         const redirectReels = redirectReelsCheck.checked;
         const redirectExplore = redirectExploreCheck.checked;
-
-        console.log({
-            voidMode,
-
-            sideReels,
-            sideExplore,
-            homeStories,
-            redirectReels,
-            redirectExplore
-        });
 
         await browser.storage.local.set({
             voidMode,
