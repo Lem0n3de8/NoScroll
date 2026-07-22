@@ -56,9 +56,33 @@ function setExploreTabHidden(hidden){
     exploreTab.classList.toggle("hidden-by-extension", hidden);
 }
 
+function setVoidMode(enabled){
+    const STYLE_ID = "instagram-void-mode";
+
+    let style = document.getElementById(STYLE_ID);
+
+    if (enabled) {
+        if (!style) {
+            style = document.createElement("style");
+            style.id = STYLE_ID;
+            style.textContent = `
+                * {
+                    display: none !important;
+                }`
+                
+                ;
+            document.head.appendChild(style);
+        }
+    } else {
+        style?.remove();
+    }
+
+}
+
 async function applySettings() {
     const settings = await browser.storage.local.get();
 
+    setVoidMode(settings.voidMode ?? false);
     setStoriesHidden(settings.homeStories ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
     setExploreTabHidden(settings.sideExplore ?? false);
