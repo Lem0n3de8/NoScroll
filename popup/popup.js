@@ -11,6 +11,8 @@
 // 0. Get the Form
 const settingsForm = document.getElementById("settings-form");
 
+const voidModeCheck = document.getElementById("void-mode-check");
+
 const sideReelsCheck = document.getElementById("side-reels-check");
 const sideExploreCheck = document.getElementById("side-explore-check");
 const homeStoriesCheck = document.getElementById("home-stories-check");
@@ -21,6 +23,8 @@ const redirectExploreCheck = document.getElementById("redirect-explore");
 async function loadFormFromLocalStorage(){
     try{
         settings = await browser.storage.local.get([
+            "voidMode",
+
             "sideReels",
             "sideExplore",
             "homeStories",
@@ -28,6 +32,8 @@ async function loadFormFromLocalStorage(){
             "redirectExplore"
         ])
         console.log("Loaded settings:", settings);
+
+        voidModeCheck.checked = settings.voidMode ?? false;
 
         sideReelsCheck.checked = settings.sideReels ?? false;
         sideExploreCheck.checked = settings.sideExplore ?? false;
@@ -54,6 +60,8 @@ settingsForm.addEventListener("submit", async (e) => {
 
 async function saveFormToLocalStorage(formData) {
     try {
+        const voidMode = voidModeCheck.checked;
+
         const sideReels = sideReelsCheck.checked;
         const sideExplore = sideExploreCheck.checked;
         const homeStories = homeStoriesCheck.checked;
@@ -61,6 +69,8 @@ async function saveFormToLocalStorage(formData) {
         const redirectExplore = redirectExploreCheck.checked;
 
         console.log({
+            voidMode,
+
             sideReels,
             sideExplore,
             homeStories,
@@ -69,6 +79,8 @@ async function saveFormToLocalStorage(formData) {
         });
 
         await browser.storage.local.set({
+            voidMode,
+
             sideReels,
             sideExplore,
             homeStories,
