@@ -12,6 +12,9 @@ When enabled, NoScroll will:
 - Redirect ```/reels``` to the Home page
 - Redirect ```/explore``` to the Home page
 
+## How it works
+
+When enabled, NoScroll adds a custom CSS rule to all targeted elements to make them invisible
 
 ## Submit an issue
 To submit an issue, check the [issues tab](https://github.com/Lem0n3de8/NoScroll/issues).
