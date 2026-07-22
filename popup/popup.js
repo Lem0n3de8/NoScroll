@@ -12,6 +12,26 @@
 const settingsForm = document.getElementById("settings-form");
 
 // 1. Load the saved data when opening the form
+async function loadFormFromLocalStorage(){
+    try{
+        settings = await browser.storage.local.get([
+            "sideReels",
+            "sideExplore",
+            "homeStories"
+        ])
+        console.log("Loaded settings:", settings);
+
+        document.getElementById("side-reels-check").checked = settings.sideReels ?? true;
+
+        document.getElementById("side-explore-check").checked = settings.sideExplore ?? true;
+
+        document.getElementById("home-stories-check").checked = settings.homeStories ?? true;
+    }catch(error){
+        console.log(error);
+    }
+}
+
+loadFormFromLocalStorage();
 
 
 // 2. Listen for form submission
