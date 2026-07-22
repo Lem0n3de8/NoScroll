@@ -8,20 +8,6 @@ const CONFIG = {
     }
 }
 
-function hideStories() {
-    const stories = document.querySelector(CONFIG.selectors.homePageStories);
-    stories?.classList.add("hidden-by-extension");
-}
-
-function hideReelsTab(){
-    const reels = document.querySelector(CONFIG.selectors.reelsTab);
-    reels?.classList.add("hidden-by-extension");
-}
-
-function hideExploreTab(){
-    const explore = document.querySelector(CONFIG.selectors.exploreTab);
-    explore?.classList.add("hidden-by-extension");
-}
 
 function hideHomeFeed(){
     const posts = document.querySelectorAll("article");
