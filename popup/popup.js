@@ -11,6 +11,10 @@
 // 0. Get the Form
 const settingsForm = document.getElementById("settings-form");
 
+const sideReelsCheck = document.getElementById("side-reels-check");
+const sideExploreCheck = document.getElementById("side-explore-check");
+const homeStoriesCheck = document.getElementById("home-stories-check");
+
 // 1. Load the saved data when opening the form
 async function loadFormFromLocalStorage(){
     try{
@@ -21,11 +25,9 @@ async function loadFormFromLocalStorage(){
         ])
         console.log("Loaded settings:", settings);
 
-        document.getElementById("side-reels-check").checked = settings.sideReels ?? true;
-
-        document.getElementById("side-explore-check").checked = settings.sideExplore ?? true;
-
-        document.getElementById("home-stories-check").checked = settings.homeStories ?? true;
+        sideReelsCheck.checked = settings.sideReels ?? true;
+        sideExploreCheck.checked = settings.sideExplore ?? true;
+        homeStoriesCheck.checked = settings.homeStories ?? true;
     }catch(error){
         console.log(error);
     }
@@ -48,9 +50,9 @@ settingsForm.addEventListener("submit", async (e) => {
 
 async function saveFormToLocalStorage(formData) {
     try {
-        const sideReels = document.getElementById("side-reels-check").checked;
-        const sideExplore = document.getElementById("side-explore-check").checked;
-        const homeStories = document.getElementById("home-stories-check").checked;
+        const sideReels = sideReelsCheck.checked;
+        const sideExplore = sideExploreCheck.checked;
+        const homeStories = homeStoriesCheck.checked;
 
         console.log({
             sideReels,
