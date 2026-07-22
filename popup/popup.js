@@ -44,8 +44,6 @@ settingsForm.addEventListener("submit", async (e) => {
     const formData = new FormData(e.currentTarget);
 
     await saveFormToLocalStorage(formData);
-
-    console.log("Apply button pressed");
 });
 
 async function saveFormToLocalStorage(formData) {
