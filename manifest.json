@@ -19,7 +19,8 @@
     ],
 
     "action":{
-        "default_icon": "icons/NoScroll-32.png"
+        "default_icon": "icons/NoScroll-32.png",
+        "default_popup": "popup/popup.html"
     },
     
     "icons":{
