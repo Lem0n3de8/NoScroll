@@ -2,7 +2,8 @@ const CONFIG = {
     selectors:{
         homePageStories: '[data-pagelet="story_tray"]',
         reelsTab: 'a[href="/reels/"]',
-        exploreTab: 'a[href="/explore/"]'
+        exploreTab: 'a[href="/explore/"]',
+        loadingState: '[data-visualcompletion="loading-state"]'
     }
 }
 
@@ -26,6 +27,12 @@ function hideHomeFeed(){
     console.log("THERE ARE A TOTAL OF:", posts.length)
     for (const post of posts){
         post.classList.add("hidden-by-extension");
+    }
+    
+    // remove the loading wheel
+    const loading = document.querySelector(CONFIG.selectors.loadingState);
+    if (loading) {
+        loading.remove();
     }
 }
 
