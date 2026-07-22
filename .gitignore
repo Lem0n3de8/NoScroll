@@ -1,0 +1,5 @@
+#Misc
+*.txt
+.DS_Store
+*.zip
+.vscode
