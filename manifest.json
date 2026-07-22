@@ -12,5 +12,14 @@
                 "required": ["none"]
             }
         }
-    }
+    }, 
+
+    "content_scripts":[
+        {
+            "matches": ["https://www.instagram.com/*", "www.instagram.com/*", "instagram.com/*"],
+            "js":["content/content.js"],
+            "css": ["content/content.css"],
+            "run_at": "document_end"
+        }
+    ]
 }
