@@ -49,17 +49,42 @@ function blockExplorePage() {
   }
 }
 
+function setStoriesHidden(hidden) {
+    const stories = document.querySelector(CONFIG.selectors.homePageStories);
+    if (!stories) return;
+
+    stories.classList.toggle("hidden-by-extension", hidden);
+}
+
+function setReelsTabHidden(hidden){
+    const reelsTab = document.querySelector(CONFIG.selectors.reelsTab);
+    if (!reelsTab) return;
+
+    reelsTab.classList.toggle("hidden-by-extension", hidden);
+}
+
+function setExploreTabHidden(hidden){
+    const exploreTab = document.querySelector(CONFIG.selectors.exploreTab);
+    if (!exploreTab) return;
+
+    exploreTab.classList.toggle("hidden-by-extension", hidden);
+}
+
+async function applySettings() {
+    const settings = await browser.storage.local.get();
+
+    setStoriesHidden(settings.homeStories ?? false);
+    setReelsTabHidden(settings.sideReels ?? false);
+    setExploreTabHidden(settings.sideExplore ?? false);
+}
+
 browser.storage.local.onChanged.addListener((changes) =>{
     console.log("Detected changes", changes);
+    applySettings();
 })
 
 const observer = new MutationObserver(() => {
-    hideStories();
-    hideReelsTab();
-    hideExploreTab();
-    blockExplorePage();
-    blockReelsPage();
-    //hideHomeFeed();
+    applySettings();
 });
 
 observer.observe(document.body, {
