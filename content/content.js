@@ -21,11 +21,19 @@ function hideExploreTab(){
     explore?.classList.add("hidden-by-extension");
 }
 
+function hideHomeFeed(){
+    const posts = document.querySelectorAll("article");
+    console.log("THERE ARE A TOTAL OF:", posts.length)
+    for (const post of posts){
+        post.classList.add("hidden-by-extension");
+    }
+}
 
 const observer = new MutationObserver(() => {
     hideStories();
     hideReelsTab();
     hideExploreTab();
+    hideHomeFeed();
 });
 
 observer.observe(document.body, {
