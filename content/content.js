@@ -32,7 +32,7 @@ function hideHomeFeed(){
     // remove the loading wheel
     const loading = document.querySelector(CONFIG.selectors.loadingState);
     if (loading) {
-        loading.remove();
+        loading.classList.add("hidden-by-extension");
     }
 }
 
