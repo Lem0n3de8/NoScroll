@@ -23,14 +23,14 @@ function hideHomeFeed(){
     }
 }
 
-function blockReelsPage() {
-  if (window.location.href.includes('instagram.com/reels')) {
+function blockReelsPage(hidden ) {
+  if (hidden && window.location.href.includes('instagram.com/reels')) {
     window.location.href = CONFIG.instagramUrl;
   }
 }
 
-function blockExplorePage() {
-  if (window.location.href.includes('instagram.com/explore')) {
+function blockExplorePage(hidden) {
+  if (hidden && window.location.href.includes('instagram.com/explore')) {
     window.location.href = CONFIG.instagramUrl;
   }
 }
@@ -62,6 +62,9 @@ async function applySettings() {
     setStoriesHidden(settings.homeStories ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
     setExploreTabHidden(settings.sideExplore ?? false);
+    blockReelsPage(settings.redirectReels ?? false);
+    blockExplorePage(settings.redirectExplore ?? false);
+
 }
 
 browser.storage.local.onChanged.addListener((changes) =>{
