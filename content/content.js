@@ -49,6 +49,10 @@ function blockExplorePage() {
   }
 }
 
+browser.storage.local.onChanged.addListener((changes) =>{
+    console.log("Detected changes", changes);
+})
+
 const observer = new MutationObserver(() => {
     hideStories();
     hideReelsTab();
