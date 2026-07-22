@@ -14,6 +14,8 @@ const settingsForm = document.getElementById("settings-form");
 const sideReelsCheck = document.getElementById("side-reels-check");
 const sideExploreCheck = document.getElementById("side-explore-check");
 const homeStoriesCheck = document.getElementById("home-stories-check");
+const redirectReelsCheck = document.getElementById("redirect-reels");
+const redirectExploreCheck = document.getElementById("redirect-explore");
 
 // 1. Load the saved data when opening the form
 async function loadFormFromLocalStorage(){
@@ -21,13 +23,17 @@ async function loadFormFromLocalStorage(){
         settings = await browser.storage.local.get([
             "sideReels",
             "sideExplore",
-            "homeStories"
+            "homeStories",
+            "redirectReels",
+            "redirectExplore"
         ])
         console.log("Loaded settings:", settings);
 
-        sideReelsCheck.checked = settings.sideReels ?? true;
-        sideExploreCheck.checked = settings.sideExplore ?? true;
-        homeStoriesCheck.checked = settings.homeStories ?? true;
+        sideReelsCheck.checked = settings.sideReels ?? false;
+        sideExploreCheck.checked = settings.sideExplore ?? false;
+        homeStoriesCheck.checked = settings.homeStories ?? false;
+        redirectReelsCheck.checked = settings.redirectReels ?? false;
+        redirectExploreCheck.checked = settings.redirectExplore ?? false;
     }catch(error){
         console.log(error);
     }
@@ -51,17 +57,23 @@ async function saveFormToLocalStorage(formData) {
         const sideReels = sideReelsCheck.checked;
         const sideExplore = sideExploreCheck.checked;
         const homeStories = homeStoriesCheck.checked;
+        const redirectReels = redirectReelsCheck.checked;
+        const redirectExplore = redirectExploreCheck.checked;
 
         console.log({
             sideReels,
             sideExplore,
-            homeStories
+            homeStories,
+            redirectReels,
+            redirectExplore
         });
 
         await browser.storage.local.set({
             sideReels,
             sideExplore,
-            homeStories
+            homeStories,
+            redirectReels,
+            redirectExplore
         });
 
         console.log("Settings saved!");
