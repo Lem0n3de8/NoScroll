@@ -11,30 +11,24 @@ const CONFIG = {
 }
 
 
-function hideHomeFeed(enabled){
+function hideHomeFeed(hidden){
     const posts = document.querySelectorAll("article");
-    console.log("THERE ARE A TOTAL OF:", posts.length)
+    const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
 
     const attribute = CONFIG.selectors.homeFeedAttribute;
     const attributeValue = CONFIG.selectors.homeFeedAttributeValue;
+    
     for (const post of posts){
-        console.log(post);
-        console.log(post.hasAttribute(attribute));
         // The posts in the home feed dont have the 
         // 'role="presentation"' attribute so we can
         // filter using that attribute
-        if (enabled && !post.hasAttribute(attribute) && !(post.getAttribute(attribute) === attributeValue)){
-            console.log("This is not a shared post");
-            post.classList.add("hidden-by-extension");
-        }
-        
-    }
 
-    // remove the loading wheel
-    const loading = document.querySelector(CONFIG.selectors.loadingState);
-    if (loading) {
-        loading.classList.add("hidden-by-extension");
+        if (!post.hasAttribute(attribute) && !(post.getAttribute(attribute) === attributeValue)){
+            post.classList.toggle("hidden-by-extension", hidden);
+        }
     }
+    // remove the loading wheel
+    if (loadingWheel) loadingWheel.classList.toggle("hidden-by-extension", hidden)
 }
 
 function blockReelsPage(hidden ) {
