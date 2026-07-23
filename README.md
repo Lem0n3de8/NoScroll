@@ -1,5 +1,7 @@
 # NoScroll
 
+> A Firefox extension that removes Instagram's most distracting features while keeping messaging and browsing intact.
+
 ## Table of Contents
 
 + [About](#about)
