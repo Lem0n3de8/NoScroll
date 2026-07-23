@@ -6,6 +6,7 @@
 + [How to install](#how-to-install)
 + [Current features](#current-features)
 + [Currently supported browsers](#currently-supported-browsers)
++ [Privacy Notice](#privacy-notice)
 + [Help development](#help-development)
 
 
@@ -42,6 +43,9 @@ This add-on is only available for Firefox. Any fork should work. Below is a deta
 | Firefox |  x  |    |         |
 | Zen     |  x  |    |         |
 
+
+## Privacy Notice
+NoScroll is simple and privacy friendly. It does not collect any data or require special permissions.
 
 ## Help Development
 
