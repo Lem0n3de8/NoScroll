@@ -38,13 +38,11 @@ Contains a simple popup user interface to toggle settings:
 
 ## Currently Supported Browsers
 
-This add-on is only available for Firefox. Any fork should work. Below is a detailed list of supported browsers
+**Officially Supported:**
+- <img src="misc/images/firefox_logo.png" width="12" > Firefox
+- <img src="misc/images/zen_logo.png" width="12" > Zen browser
 
-| Browser | yes | no | unknown |
-| ------- | --- | -- | ------- |
-| Firefox |  x  |    |         |
-| Zen     |  x  |    |         |
-
+Other Firefox-based browsers may work but have not been tested.
 
 ## Privacy Notice
 NoScroll is simple and privacy friendly. It does not collect any data or require special permissions.
