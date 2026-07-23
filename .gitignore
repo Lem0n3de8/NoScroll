@@ -3,3 +3,4 @@
 .DS_Store
 *.zip
 .vscode
+*.old.js

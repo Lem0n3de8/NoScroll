@@ -1,0 +1,8 @@
+body{
+    background-color: grey;
+}
+
+.inline-code{
+    font-family: monospace; 
+    background-color: lightgrey;
+}

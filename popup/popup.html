@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="width=600">
+    <link rel="stylesheet" href="popup.css">
+    <script src="popup.js" defer></script>
+</head>
+<body>
+    <div id="popup-content">    
+
+        <div id="settings-div">
+            <form id="settings-form">
+                <div class="form-input">
+                    <input type="checkbox" id="side-reels-check" name="side-reels-check">
+                    <label for="side-reels-check">sidebar reels icon</label>
+                </div>
+                <div class="form-input">
+                    <input type="checkbox" id="side-explore-check" name="side-explore-check">
+                    <label for="side-explore-check">sidebar explore icon</label>
+                </div>
+                <div class="form-input">
+                    <input type="checkbox" id="home-stories-check" name="home-stories-check">
+                    <label for="home-stories-check">home page stories</label>
+                </div>
+                <div class="form-input">
+                    <input type="checkbox" id="redirect-reels" name="redirect-reels">
+                    <label for="redirect-reels">redirect <span class="inline-code">/reels</span> page</label>
+                </div>
+                <div class="form-input">
+                    <input type="checkbox" id="redirect-explore" name="redirect-explore">
+                    <label for="redirect-explore">redirect <span class="inline-code">/explore</span> page</label>
+                </div>
+                <div class="form-input">
+                    <input type="checkbox" name="void-mode-check" id="void-mode-check">
+                    <label for="void-mode-check">void mode</label>
+                </div>
+                <div class="form-input form-save" >
+                    <input type="submit" value="Apply settings (reload page)">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
