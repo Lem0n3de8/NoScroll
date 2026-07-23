@@ -4,16 +4,30 @@ const CONFIG = {
         homePageStories: '[data-pagelet="story_tray"]',
         reelsTab: 'a[href="/reels/"]',
         exploreTab: 'a[href="/explore/"]',
-        loadingState: '[data-visualcompletion="loading-state"]'
+        loadingState: '[data-visualcompletion="loading-state"]',
+        homeFeedAttribute: 'role',
+        homeFeedAttributeValue: 'presentation'
     }
 }
 
 
-function hideHomeFeed(){
+function hideHomeFeed(enabled){
     const posts = document.querySelectorAll("article");
     console.log("THERE ARE A TOTAL OF:", posts.length)
+
+    const attribute = CONFIG.selectors.homeFeedAttribute;
+    const attributeValue = CONFIG.selectors.homeFeedAttributeValue;
     for (const post of posts){
-        post.classList.add("hidden-by-extension");
+        console.log(post);
+        console.log(post.hasAttribute(attribute));
+        // The posts in the home feed dont have the 
+        // 'role="presentation"' attribute so we can
+        // filter using that attribute
+        if (enabled && !post.hasAttribute(attribute) && !(post.getAttribute(attribute) === attributeValue)){
+            console.log("This is not a shared post");
+            post.classList.add("hidden-by-extension");
+        }
+        
     }
 
     // remove the loading wheel
@@ -88,6 +102,7 @@ async function applySettings() {
     setExploreTabHidden(settings.sideExplore ?? false);
     blockReelsPage(settings.redirectReels ?? false);
     blockExplorePage(settings.redirectExplore ?? false);
+    hideHomeFeed(settings.homeFeed ?? false);
 
 }
 
