@@ -25,16 +25,16 @@ NoScroll is a content blocker for Instagram available for Firefox. With a simple
 
 ## Current Features:
 Contains a simple popup user interface to toggle settings:
-```add ui_preview.png```
+<img src="misc/images/ui_preview.png">
 
 | Setting                  | Description |
 | ------------------------ | ------------------------ |
-| sidebar reels icon       | Hide the reel icon from the left sidebar |
-| sidebar explore icon     | Hide the explore icon from the left sidebar |
-| home page stories        | Hide the stories at the top of the Home page |
-| redirect `/reels` page   | Redirect any URL containing `instagram/reels` to `instagram.com` |
-| redirect `/explore` page | Redirect any URL containing `instagram/explore` to `instagram.com` |
-| void mode                | Turn the page blank |
+| Sidebar reels icon       | Hide the reel icon from the left sidebar |
+| Sidebar explore icon     | Hide the explore icon from the left sidebar |
+| Home page stories        | Hide the stories at the top of the Home page |
+| Redirect `/reels` page   | Redirect any URL containing `instagram/reels` to `instagram.com` |
+| Redirect `/explore` page | Redirect any URL containing `instagram/explore` to `instagram.com` |
+| Void mode                | Turn the page blank |
 
 ## Currently Supported Browsers
 
