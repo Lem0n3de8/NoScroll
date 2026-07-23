@@ -49,8 +49,11 @@ NoScroll is simple and privacy friendly. It does not collect any data or require
 
 ## Help Development
 
-### Contributions
-To submit a pull request you need to first 
+### Pull Requests
+
+Please open an issue before starting work on a feature or significant change.
+
+All pull requests should target the `develop` branch rather than `main`.
 
 Suggested Improvements:
 - Test the extension on other browsers
