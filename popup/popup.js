@@ -18,6 +18,7 @@ const sideExploreCheck = document.getElementById("side-explore-check");
 const homeStoriesCheck = document.getElementById("home-stories-check");
 const redirectReelsCheck = document.getElementById("redirect-reels");
 const redirectExploreCheck = document.getElementById("redirect-explore");
+const homeFeedCheck = document.getElementById("home-feed-check");
 
 // 1. Load the saved data when opening the form
 async function loadFormFromLocalStorage(){
@@ -29,7 +30,8 @@ async function loadFormFromLocalStorage(){
             "sideExplore",
             "homeStories",
             "redirectReels",
-            "redirectExplore"
+            "redirectExplore",
+            "homeFeed"
         ])
         console.log("Loaded settings");
 
@@ -40,6 +42,7 @@ async function loadFormFromLocalStorage(){
         homeStoriesCheck.checked = settings.homeStories ?? false;
         redirectReelsCheck.checked = settings.redirectReels ?? false;
         redirectExploreCheck.checked = settings.redirectExplore ?? false;
+        homeFeedCheck.checked = settings.homeFeed ?? false;
     }catch(error){
         console.log(error);
     }
@@ -67,6 +70,7 @@ async function saveFormToLocalStorage(formData) {
         const homeStories = homeStoriesCheck.checked;
         const redirectReels = redirectReelsCheck.checked;
         const redirectExplore = redirectExploreCheck.checked;
+        const homeFeed = homeFeedCheck.checked;
 
         await browser.storage.local.set({
             voidMode,
@@ -75,7 +79,8 @@ async function saveFormToLocalStorage(formData) {
             sideExplore,
             homeStories,
             redirectReels,
-            redirectExplore
+            redirectExplore,
+            homeFeed
         });
 
         console.log("Settings saved!");
