@@ -11,7 +11,7 @@
 
 
 ## About
-Any time I open instagram to simply text friends, I always find myself eventually scrolling. For that reason, I decided to build NoScroll, an extension that aims at reducing scrolling addiction.
+Every time I open Instagram just to reply to a friend, I eventually end up scrolling. NoScroll was created to remove the most distracting parts of Instagram while keeping messaging and other essential features accessible.
 
 NoScroll is a content blocker for Instagram available for Firefox. With a simple popup UI, you can toggle on/off distracting elements such as Stories, Reels and Explore page.
 
