@@ -19,16 +19,17 @@ function hideHomeFeed(hidden){
     const attributeValue = CONFIG.selectors.homeFeedAttributeValue;
     
     for (const post of posts){
-        // The posts in the home feed dont have the 
-        // 'role="presentation"' attribute so we can
-        // filter using that attribute
-
-        if (!post.hasAttribute(attribute) && !(post.getAttribute(attribute) === attributeValue)){
-            post.classList.toggle("hidden-by-extension", hidden);
-        }
+        post.classList.toggle("hidden-by-extension", hidden);
     }
-    // remove the loading wheel
-    if (loadingWheel) loadingWheel.classList.toggle("hidden-by-extension", hidden)
+    // Remove the loading wheel
+    if (loadingWheel) loadingWheel.classList.toggle("hidden-by-extension", hidden);
+    
+    // Disable scrolling 
+    if (hidden) {
+        document.body.style.setProperty("overflow", "hidden", "important");
+    } else {
+        document.body.style.removeProperty("overflow");
+    }
 }
 
 function blockReelsPage(hidden ) {
