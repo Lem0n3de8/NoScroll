@@ -5,8 +5,6 @@ const CONFIG = {
         reelsTab: 'a[href="/reels/"]',
         exploreTab: 'a[href="/explore/"]',
         loadingState: '[data-visualcompletion="loading-state"]',
-        homeFeedAttribute: 'role',
-        homeFeedAttributeValue: 'presentation'
     }
 }
 
@@ -14,9 +12,6 @@ const CONFIG = {
 function hideHomeFeed(hidden){
     const posts = document.querySelectorAll("article");
     const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
-
-    const attribute = CONFIG.selectors.homeFeedAttribute;
-    const attributeValue = CONFIG.selectors.homeFeedAttributeValue;
     
     for (const post of posts){
         post.classList.toggle("hidden-by-extension", hidden);
