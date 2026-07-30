@@ -85,14 +85,21 @@ function setVoidMode(enabled){
 
 async function applySettings() {
     const settings = await browser.storage.local.get();
+    
+    const path = window.location.pathname;
+    
+    // Home page settings
+    if (window.location.href === CONFIG.instagramUrl) {
+        setStoriesHidden(settings.homeStories ?? false);
+        hideHomeFeed(settings.homeFeed ?? false);
+    }
 
+    // General settings
     setVoidMode(settings.voidMode ?? false);
-    setStoriesHidden(settings.homeStories ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
     setExploreTabHidden(settings.sideExplore ?? false);
     blockReelsPage(settings.redirectReels ?? false);
     blockExplorePage(settings.redirectExplore ?? false);
-    hideHomeFeed(settings.homeFeed ?? false);
 
 }
 
