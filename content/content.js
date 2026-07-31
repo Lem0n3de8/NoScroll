@@ -83,6 +83,26 @@ function setVoidMode(enabled){
 
 }
 
+function setGrayScale(enabled){
+    const STYLE_ID = "instagram-gray-scale";
+
+    let style = document.getElementById(STYLE_ID);
+
+    if (enabled){
+        if (!style){
+            style = document.createElement("style");
+            style.id = STYLE_ID;
+            style.textContent = `
+            * {
+                filter: grayscale(1);
+            }`;
+            document.head.appendChild(style);
+        }
+    } else {
+        style?.remove();
+    }
+}
+
 async function applySettings() {
     const settings = await browser.storage.local.get();
     
@@ -100,6 +120,7 @@ async function applySettings() {
     setExploreTabHidden(settings.sideExplore ?? false);
     blockReelsPage(settings.redirectReels ?? false);
     blockExplorePage(settings.redirectExplore ?? false);
+    setGrayScale(settings.grayScale ?? false);
 
 }
 
