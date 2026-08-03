@@ -9,17 +9,21 @@ const CONFIG = {
 }
 
 
-function hideHomeFeed(){
+function hideHomeFeed(hidden){
     const posts = document.querySelectorAll("article");
-    console.log("THERE ARE A TOTAL OF:", posts.length)
+    const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
+    
     for (const post of posts){
-        post.classList.add("hidden-by-extension");
+        post.classList.toggle("hidden-by-extension", hidden);
     }
-
-    // remove the loading wheel
-    const loading = document.querySelector(CONFIG.selectors.loadingState);
-    if (loading) {
-        loading.classList.add("hidden-by-extension");
+    // Remove the loading wheel
+    if (loadingWheel) loadingWheel.classList.toggle("hidden-by-extension", hidden);
+    
+    // Disable scrolling 
+    if (hidden) {
+        document.body.style.setProperty("overflow", "hidden", "important");
+    } else {
+        document.body.style.removeProperty("overflow");
     }
 }
 
@@ -79,15 +83,44 @@ function setVoidMode(enabled){
 
 }
 
+function setGrayScale(enabled){
+    const STYLE_ID = "instagram-gray-scale";
+
+    let style = document.getElementById(STYLE_ID);
+
+    if (enabled){
+        if (!style){
+            style = document.createElement("style");
+            style.id = STYLE_ID;
+            style.textContent = `
+            * {
+                filter: grayscale(1);
+            }`;
+            document.head.appendChild(style);
+        }
+    } else {
+        style?.remove();
+    }
+}
+
 async function applySettings() {
     const settings = await browser.storage.local.get();
+    
+    const path = window.location.pathname;
+    
+    // Home page settings
+    if (window.location.href === CONFIG.instagramUrl) {
+        setStoriesHidden(settings.homeStories ?? false);
+        hideHomeFeed(settings.homeFeed ?? false);
+    }
 
+    // General settings
     setVoidMode(settings.voidMode ?? false);
-    setStoriesHidden(settings.homeStories ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
     setExploreTabHidden(settings.sideExplore ?? false);
     blockReelsPage(settings.redirectReels ?? false);
     blockExplorePage(settings.redirectExplore ?? false);
+    setGrayScale(settings.grayScale ?? false);
 
 }
 
