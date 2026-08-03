@@ -4,7 +4,7 @@ const CONFIG = {
         homePageStories: '[data-pagelet="story_tray"]',
         reelsTab: 'a[href="/reels/"]',
         exploreTab: 'a[href="/explore/"]',
-        loadingState: '[data-visualcompletion="loading-state"]',
+        loadingState: '[data-visualcompletion="loading-state"]'
     }
 }
 
