@@ -1,11 +1,11 @@
 # NoScroll
 
-A Firefox extension that removes Instagram's most distracting features while keeping messaging and browsing intact.
+A Firefox extension that removes Instagram's most distracting features while keeping messaging intact.
     
 [![Static Badge](https://img.shields.io/badge/Firefox_add--on-blue?style=for-the-badge&logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/noscrollinstagram/)
 [![Static Badge](https://img.shields.io/badge/Maintained%3F-yes-brightgreen?style=for-the-badge)](https://github.com/Lem0n3de8/NoScroll/commits)
 [![Static Badge](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
-[![Static Badge](https://img.shields.io/badge/Latest--version-0.2.0-blue?style=for-the-badge)](https://github.com/Lem0n3de8/NoScroll/releases)
+[![Static Badge](https://img.shields.io/badge/Latest--version-0.4.0-blue?style=for-the-badge)](https://github.com/Lem0n3de8/NoScroll/releases)
       
 ## Table of Contents
 
@@ -31,7 +31,7 @@ NoScroll is a content blocker for Instagram available for Firefox. With a simple
 ## Current Features:
 Contains a simple popup user interface to toggle settings:
 
-<img src="misc/images/ui_preview.png" width="300">
+<img src="misc/images/ui_preview_0.4.0.png" width="300">
 
 | Setting                  | Description |
 | ------------------------ | ------------------------ |
@@ -40,6 +40,8 @@ Contains a simple popup user interface to toggle settings:
 | Home page stories        | Hide the stories at the top of the Home page |
 | Redirect `/reels` page   | Redirect any URL containing `instagram/reels` to `instagram.com` |
 | Redirect `/explore` page | Redirect any URL containing `instagram/explore` to `instagram.com` |
+| Home page feed | Hide the posts and reels suggested in the home page |
+| Apply grayscale | Add grayscale covering the whole website |
 | Void mode                | Turn the page blank |
 
 ## Currently Supported Browsers
