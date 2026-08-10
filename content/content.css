@@ -1,3 +1,7 @@
 .hidden-by-extension {
     display: none !important;
 }
+
+.apply-grayscale{
+    filter:grayscale(1);
+}
