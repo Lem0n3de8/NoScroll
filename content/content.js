@@ -84,22 +84,11 @@ function setVoidMode(enabled){
 }
 
 function setGrayScale(enabled){
-    const STYLE_ID = "instagram-gray-scale";
-
-    let style = document.getElementById(STYLE_ID);
-
-    if (enabled){
-        if (!style){
-            style = document.createElement("style");
-            style.id = STYLE_ID;
-            style.textContent = `
-            * {
-                filter: grayscale(1);
-            }`;
-            document.head.appendChild(style);
-        }
-    } else {
-        style?.remove();
+    //Grayscale on home page
+    const posts = document.querySelectorAll("article");
+    for (const post of posts){
+        console.log("Applying grayscale");
+        post.classList.toggle("apply-grayscale", enabled);
     }
 }
 
