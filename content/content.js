@@ -84,22 +84,35 @@ function setVoidMode(enabled){
 }
 
 function setGrayScale(enabled){
-    const STYLE_ID = "instagram-gray-scale";
-
-    let style = document.getElementById(STYLE_ID);
-
-    if (enabled){
-        if (!style){
-            style = document.createElement("style");
-            style.id = STYLE_ID;
-            style.textContent = `
-            * {
-                filter: grayscale(1);
-            }`;
-            document.head.appendChild(style);
-        }
-    } else {
-        style?.remove();
+    // img -> profile pictures, image posts 
+    const imgs = document.querySelectorAll("img");
+    for (const img of imgs){
+        img.classList.toggle("apply-grayscale", enabled);
+    }
+    // video -> video posts
+    const videos = document.querySelectorAll("video");
+    for (const video of videos){
+        video.classList.toggle("apply-grayscale", enabled);
+    }
+    // button -> image post page button
+    const buttons = document.querySelectorAll("button");
+    for (const button of buttons){
+        button.classList.toggle("apply-grayscale", enabled);
+    }
+    // svg -> repost blue icon
+    const svgs = document.querySelectorAll("svg");
+    for (const svg of svgs){
+        svg.classList.toggle("apply-grayscale", enabled);
+    }
+    // a -> hashtags
+    const as = document.querySelectorAll("a");
+    for (const a of as){
+        a.classList.toggle("apply-grayscale", enabled);
+    }
+    // canvas -> story rainbow/green circle
+    const canvases = document.querySelectorAll("canvas");
+    for (const canvas of canvases){
+        canvas.classList.toggle("apply-grayscale", enabled);
     }
 }
 
