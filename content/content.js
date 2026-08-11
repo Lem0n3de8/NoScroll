@@ -109,7 +109,7 @@ function setGrayScale(enabled){
     for (const a of as){
         a.classList.toggle("apply-grayscale", enabled);
     }
-    // canva -> story rainbow/green circle
+    // canvas -> story rainbow/green circle
     const canvases = document.querySelectorAll("canvas");
     for (const canvas of canvases){
         canvas.classList.toggle("apply-grayscale", enabled);
