@@ -117,20 +117,34 @@ function setGrayScale(enabled){
     }
 }
 
-function hideExplorePagePosts(){
-    const anchors = document.querySelectorAll("a");
-    
-    const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
+function isExplorePage(){
+    return location.pathname === "/explore/";
+}
 
-    for (const anchor of anchors){
-        if (anchor.href.includes("/p/")){
-            console.log("Deleting one post")
-            anchor.classList.toggle("hidden-by-extension", true);
-        } 
+
+function updateExplorePage(onExplorePage){
+    if (!onExplorePage){
+        
+        try{
+            const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
+            if (loadingWheel) loadingWheel.classList.remove("hidden-by-extension");
+        }
+        catch{
+            return
+        }
     }
+    else{
+        const anchors = document.querySelectorAll("a");
+        const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
 
-    // Remove the loading wheel
-    if (loadingWheel) loadingWheel.classList.toggle("hidden-by-extension", true);
+        for (const anchor of anchors){
+            if (anchor.href.includes("/p/")){
+                anchor.classList.add("hidden-by-extension");
+            } 
+        }
+
+        if (loadingWheel) loadingWheel.classList.add("hidden-by-extension");
+    }
 }
 
 async function applySettings() {
@@ -154,10 +168,7 @@ async function applySettings() {
 
     // auto enabled settings
 
-    if (window.location.href === CONFIG.instagramExploreUrl){
-        console.log("IN EXPLORE PAGE");
-        hideExplorePagePosts();
-    }
+    updateExplorePage(isExplorePage());
 }
 
 browser.storage.local.onChanged.addListener((changes) =>{
