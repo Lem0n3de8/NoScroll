@@ -14,10 +14,8 @@ const settingsForm = document.getElementById("settings-form");
 const voidModeCheck = document.getElementById("void-mode-check");
 
 const sideReelsCheck = document.getElementById("side-reels-check");
-const sideExploreCheck = document.getElementById("side-explore-check");
 const homeStoriesCheck = document.getElementById("home-stories-check");
 const redirectReelsCheck = document.getElementById("redirect-reels");
-const redirectExploreCheck = document.getElementById("redirect-explore");
 const homeFeedCheck = document.getElementById("home-feed-check");
 const grayScaleCheck = document.getElementById("gray-scale-check")
 
@@ -28,10 +26,8 @@ async function loadFormFromLocalStorage(){
             "voidMode",
 
             "sideReels",
-            "sideExplore",
             "homeStories",
             "redirectReels",
-            "redirectExplore",
             "homeFeed",
             "grayScale"
         ])
@@ -40,10 +36,8 @@ async function loadFormFromLocalStorage(){
         voidModeCheck.checked = settings.voidMode ?? false;
 
         sideReelsCheck.checked = settings.sideReels ?? false;
-        sideExploreCheck.checked = settings.sideExplore ?? false;
         homeStoriesCheck.checked = settings.homeStories ?? false;
         redirectReelsCheck.checked = settings.redirectReels ?? false;
-        redirectExploreCheck.checked = settings.redirectExplore ?? false;
         homeFeedCheck.checked = settings.homeFeed ?? false;
         grayScaleCheck.checked = settings.grayScale ?? false;
     }catch(error){
@@ -69,10 +63,8 @@ async function saveFormToLocalStorage(formData) {
         const voidMode = voidModeCheck.checked;
 
         const sideReels = sideReelsCheck.checked;
-        const sideExplore = sideExploreCheck.checked;
         const homeStories = homeStoriesCheck.checked;
         const redirectReels = redirectReelsCheck.checked;
-        const redirectExplore = redirectExploreCheck.checked;
         const homeFeed = homeFeedCheck.checked;
         const grayScale = grayScaleCheck.checked;
 
@@ -80,10 +72,8 @@ async function saveFormToLocalStorage(formData) {
             voidMode,
 
             sideReels,
-            sideExplore,
             homeStories,
             redirectReels,
-            redirectExplore,
             homeFeed,
             grayScale
         });

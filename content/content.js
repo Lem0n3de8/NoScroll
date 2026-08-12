@@ -33,12 +33,6 @@ function blockReelsPage(hidden ) {
   }
 }
 
-function blockExplorePage(hidden) {
-  if (hidden && window.location.href.includes('instagram.com/explore')) {
-    window.location.href = CONFIG.instagramUrl;
-  }
-}
-
 function setStoriesHidden(hidden) {
     const stories = document.querySelector(CONFIG.selectors.homePageStories);
     if (!stories) return;
@@ -51,13 +45,6 @@ function setReelsTabHidden(hidden){
     if (!reelsTab) return;
 
     reelsTab.classList.toggle("hidden-by-extension", hidden);
-}
-
-function setExploreTabHidden(hidden){
-    const exploreTab = document.querySelector(CONFIG.selectors.exploreTab);
-    if (!exploreTab) return;
-
-    exploreTab.classList.toggle("hidden-by-extension", hidden);
 }
 
 function setVoidMode(enabled){
@@ -116,6 +103,35 @@ function setGrayScale(enabled){
     }
 }
 
+function isExplorePage(){
+    return location.pathname === "/explore/";
+}
+
+function updateExplorePage(onExplorePage){
+    if (!onExplorePage){
+        
+        try{
+            const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
+            if (loadingWheel) loadingWheel.classList.remove("hidden-by-extension");
+        }
+        catch{
+            return
+        }
+    }
+    else{
+        const anchors = document.querySelectorAll("a");
+        const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
+
+        for (const anchor of anchors){
+            if (anchor.href.includes("/p/")){
+                anchor.classList.add("hidden-by-extension");
+            } 
+        }
+
+        if (loadingWheel) loadingWheel.classList.add("hidden-by-extension");
+    }
+}
+
 async function applySettings() {
     const settings = await browser.storage.local.get();
     
@@ -130,11 +146,12 @@ async function applySettings() {
     // General settings
     setVoidMode(settings.voidMode ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
-    setExploreTabHidden(settings.sideExplore ?? false);
     blockReelsPage(settings.redirectReels ?? false);
-    blockExplorePage(settings.redirectExplore ?? false);
     setGrayScale(settings.grayScale ?? false);
 
+    // auto enabled settings
+
+    updateExplorePage(isExplorePage());
 }
 
 browser.storage.local.onChanged.addListener((changes) =>{
