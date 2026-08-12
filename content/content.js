@@ -1,6 +1,5 @@
 const CONFIG = {
     instagramUrl: "https://www.instagram.com/",
-    instagramExploreUrl: "https://www.instagram.com/explore/",
     selectors:{
         homePageStories: '[data-pagelet="story_tray"]',
         reelsTab: 'a[href="/reels/"]',
