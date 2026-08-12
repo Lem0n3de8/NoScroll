@@ -120,12 +120,17 @@ function setGrayScale(enabled){
 function hideExplorePagePosts(){
     const anchors = document.querySelectorAll("a");
     
+    const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
+
     for (const anchor of anchors){
         if (anchor.href.includes("/p/")){
             console.log("Deleting one post")
             anchor.classList.toggle("hidden-by-extension", true);
         } 
     }
+
+    // Remove the loading wheel
+    if (loadingWheel) loadingWheel.classList.toggle("hidden-by-extension", true);
 }
 
 async function applySettings() {
