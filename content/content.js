@@ -34,12 +34,6 @@ function blockReelsPage(hidden ) {
   }
 }
 
-function blockExplorePage(hidden) {
-  if (hidden && window.location.href.includes('instagram.com/explore')) {
-    window.location.href = CONFIG.instagramUrl;
-  }
-}
-
 function setStoriesHidden(hidden) {
     const stories = document.querySelector(CONFIG.selectors.homePageStories);
     if (!stories) return;
@@ -52,13 +46,6 @@ function setReelsTabHidden(hidden){
     if (!reelsTab) return;
 
     reelsTab.classList.toggle("hidden-by-extension", hidden);
-}
-
-function setExploreTabHidden(hidden){
-    const exploreTab = document.querySelector(CONFIG.selectors.exploreTab);
-    if (!exploreTab) return;
-
-    exploreTab.classList.toggle("hidden-by-extension", hidden);
 }
 
 function setVoidMode(enabled){
@@ -121,7 +108,6 @@ function isExplorePage(){
     return location.pathname === "/explore/";
 }
 
-
 function updateExplorePage(onExplorePage){
     if (!onExplorePage){
         
@@ -161,9 +147,7 @@ async function applySettings() {
     // General settings
     setVoidMode(settings.voidMode ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
-    setExploreTabHidden(settings.sideExplore ?? false);
     blockReelsPage(settings.redirectReels ?? false);
-    blockExplorePage(settings.redirectExplore ?? false);
     setGrayScale(settings.grayScale ?? false);
 
     // auto enabled settings
