@@ -1,5 +1,6 @@
 const CONFIG = {
     instagramUrl: "https://www.instagram.com/",
+    instagramExploreUrl: "https://www.instagram.com/explore/",
     selectors:{
         homePageStories: '[data-pagelet="story_tray"]',
         reelsTab: 'a[href="/reels/"]',
@@ -116,6 +117,17 @@ function setGrayScale(enabled){
     }
 }
 
+function hideExplorePagePosts(){
+    const anchors = document.querySelectorAll("a");
+    
+    for (const anchor of anchors){
+        if (anchor.href.includes("/p/")){
+            console.log("Deleting one post")
+            anchor.classList.toggle("hidden-by-extension", true);
+        } 
+    }
+}
+
 async function applySettings() {
     const settings = await browser.storage.local.get();
     
@@ -135,6 +147,12 @@ async function applySettings() {
     blockExplorePage(settings.redirectExplore ?? false);
     setGrayScale(settings.grayScale ?? false);
 
+    // auto enabled settings
+
+    if (window.location.href === CONFIG.instagramExploreUrl){
+        console.log("IN EXPLORE PAGE");
+        hideExplorePagePosts();
+    }
 }
 
 browser.storage.local.onChanged.addListener((changes) =>{
