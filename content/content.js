@@ -33,12 +33,6 @@ function blockReelsPage(hidden ) {
   }
 }
 
-function blockExplorePage(hidden) {
-  if (hidden && window.location.href.includes('instagram.com/explore')) {
-    window.location.href = CONFIG.instagramUrl;
-  }
-}
-
 function setStoriesHidden(hidden) {
     const stories = document.querySelector(CONFIG.selectors.homePageStories);
     if (!stories) return;
@@ -51,13 +45,6 @@ function setReelsTabHidden(hidden){
     if (!reelsTab) return;
 
     reelsTab.classList.toggle("hidden-by-extension", hidden);
-}
-
-function setExploreTabHidden(hidden){
-    const exploreTab = document.querySelector(CONFIG.selectors.exploreTab);
-    if (!exploreTab) return;
-
-    exploreTab.classList.toggle("hidden-by-extension", hidden);
 }
 
 function setVoidMode(enabled){
@@ -84,22 +71,64 @@ function setVoidMode(enabled){
 }
 
 function setGrayScale(enabled){
-    const STYLE_ID = "instagram-gray-scale";
+    // img -> profile pictures, image posts 
+    const imgs = document.querySelectorAll("img");
+    for (const img of imgs){
+        img.classList.toggle("apply-grayscale", enabled);
+    }
+    // video -> video posts
+    const videos = document.querySelectorAll("video");
+    for (const video of videos){
+        video.classList.toggle("apply-grayscale", enabled);
+    }
+    // button -> image post page button
+    const buttons = document.querySelectorAll("button");
+    for (const button of buttons){
+        button.classList.toggle("apply-grayscale", enabled);
+    }
+    // svg -> repost blue icon
+    const svgs = document.querySelectorAll("svg");
+    for (const svg of svgs){
+        svg.classList.toggle("apply-grayscale", enabled);
+    }
+    // a -> hashtags
+    const as = document.querySelectorAll("a");
+    for (const a of as){
+        a.classList.toggle("apply-grayscale", enabled);
+    }
+    // canvas -> story rainbow/green circle
+    const canvases = document.querySelectorAll("canvas");
+    for (const canvas of canvases){
+        canvas.classList.toggle("apply-grayscale", enabled);
+    }
+}
 
-    let style = document.getElementById(STYLE_ID);
+function isExplorePage(){
+    return location.pathname === "/explore/";
+}
 
-    if (enabled){
-        if (!style){
-            style = document.createElement("style");
-            style.id = STYLE_ID;
-            style.textContent = `
-            * {
-                filter: grayscale(1);
-            }`;
-            document.head.appendChild(style);
+function updateExplorePage(onExplorePage){
+    if (!onExplorePage){
+        
+        try{
+            const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
+            if (loadingWheel) loadingWheel.classList.remove("hidden-by-extension");
         }
-    } else {
-        style?.remove();
+        catch{
+            return
+        }
+    }
+    else{
+        const anchors = document.querySelectorAll("a");
+        const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
+
+        for (const anchor of anchors){
+            if (anchor.href.includes("/p/")){
+                anchor.classList.add("hidden-by-extension");
+            } 
+        }
+
+        if (loadingWheel) loadingWheel.classList.add("hidden-by-extension");
     }
 }
 
@@ -117,11 +146,12 @@ async function applySettings() {
     // General settings
     setVoidMode(settings.voidMode ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
-    setExploreTabHidden(settings.sideExplore ?? false);
     blockReelsPage(settings.redirectReels ?? false);
-    blockExplorePage(settings.redirectExplore ?? false);
     setGrayScale(settings.grayScale ?? false);
 
+    // auto enabled settings
+
+    updateExplorePage(isExplorePage());
 }
 
 browser.storage.local.onChanged.addListener((changes) =>{
