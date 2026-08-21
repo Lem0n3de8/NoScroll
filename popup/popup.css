@@ -1,8 +1,82 @@
-body{
-    background-color: grey;
+body {
+    width: 280px;
+    margin: 0;
+    padding: 16px;
+    box-sizing: border-box;
+
+    background-color: #f8fafc;
+    color: #1e293b;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 }
 
-.inline-code{
-    font-family: monospace; 
-    background-color: lightgrey;
+#popup-content {
+    width: 100%;
+}
+
+#settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 10px;
+
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+}
+
+.form-input label {
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.form-input input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.inline-code {
+    padding: 2px 5px;
+
+    font-family: monospace;
+    font-size: 13px;
+
+    background-color: #e2e8f0;
+    border-radius: 4px;
+}
+
+.form-save {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.form-save input[type="submit"] {
+    width: 100%;
+    padding: 10px 14px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #2563eb;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.form-save input[type="submit"]:hover {
+    background-color: #1d4ed8;
 }
