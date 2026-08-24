@@ -13,9 +13,7 @@ const settingsForm = document.getElementById("settings-form");
 
 const voidModeCheck = document.getElementById("void-mode-check");
 
-const sideReelsCheck = document.getElementById("side-reels-check");
 const homeStoriesCheck = document.getElementById("home-stories-check");
-const redirectReelsCheck = document.getElementById("redirect-reels");
 const homeFeedCheck = document.getElementById("home-feed-check");
 const grayScaleCheck = document.getElementById("gray-scale-check")
 
@@ -25,9 +23,7 @@ async function loadFormFromLocalStorage(){
         settings = await browser.storage.local.get([
             "voidMode",
 
-            "sideReels",
             "homeStories",
-            "redirectReels",
             "homeFeed",
             "grayScale"
         ])
@@ -35,9 +31,7 @@ async function loadFormFromLocalStorage(){
 
         voidModeCheck.checked = settings.voidMode ?? false;
 
-        sideReelsCheck.checked = settings.sideReels ?? false;
         homeStoriesCheck.checked = settings.homeStories ?? false;
-        redirectReelsCheck.checked = settings.redirectReels ?? false;
         homeFeedCheck.checked = settings.homeFeed ?? false;
         grayScaleCheck.checked = settings.grayScale ?? false;
     }catch(error){
@@ -62,18 +56,14 @@ async function saveFormToLocalStorage(formData) {
     try {
         const voidMode = voidModeCheck.checked;
 
-        const sideReels = sideReelsCheck.checked;
         const homeStories = homeStoriesCheck.checked;
-        const redirectReels = redirectReelsCheck.checked;
         const homeFeed = homeFeedCheck.checked;
         const grayScale = grayScaleCheck.checked;
 
         await browser.storage.local.set({
             voidMode,
 
-            sideReels,
             homeStories,
-            redirectReels,
             homeFeed,
             grayScale
         });

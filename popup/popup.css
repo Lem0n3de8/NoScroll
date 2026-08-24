@@ -45,16 +45,6 @@ body {
     cursor: pointer;
 }
 
-.inline-code {
-    padding: 2px 5px;
-
-    font-family: monospace;
-    font-size: 13px;
-
-    background-color: #e2e8f0;
-    border-radius: 4px;
-}
-
 .form-save {
     padding: 0;
     border: none;
