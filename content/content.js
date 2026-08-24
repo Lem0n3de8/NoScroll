@@ -28,8 +28,6 @@ function hideHomeFeed(hidden){
 }
 
 function blockReelsPage() {
-    console.log("FUNCTION TRIGGERED")
-    console.log(location.pathname)
     if (window.location.href.includes('instagram.com/reels')){
         window.location.href = CONFIG.instagramUrl;
     }
