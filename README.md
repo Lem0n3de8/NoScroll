@@ -58,18 +58,7 @@ NoScroll is simple and privacy friendly. It does not collect any data or require
 
 ## Help Development
 
-### Pull Requests
-
-Please open an issue before starting work on a feature or significant change.
-
-All pull requests should target the `develop` branch rather than `main`.
-
-Suggested Improvements:
-- Test the extension on other browsers
-- Improve popup CSS
-
-### Submit an Issue
-To submit an issue, check the [issues tab](https://github.com/Lem0n3de8/NoScroll/issues).
+If you want to open an issue, suggest a feature or make a contribution, check the [Contributing page](https://github.com/Lem0n3de8/NoScroll/blob/main/CONTRIBUTING.md) of this repository
 
 ----
 
