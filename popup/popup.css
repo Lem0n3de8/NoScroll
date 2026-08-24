@@ -4,7 +4,7 @@ body {
     padding: 16px;
     box-sizing: border-box;
 
-    background-color: #f8fafc;
+    background-color: #808080;
     color: #1e293b;
 
     font-family: Arial, sans-serif;
@@ -28,7 +28,7 @@ body {
 
     padding: 8px 10px;
 
-    background-color: #ffffff;
+    background-color: gray;
     border: 1px solid #e2e8f0;
     border-radius: 6px;
 }
