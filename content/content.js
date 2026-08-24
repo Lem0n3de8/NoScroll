@@ -48,26 +48,8 @@ function setReelsTabHidden(){
 }
 
 function setVoidMode(enabled){
-    const STYLE_ID = "instagram-void-mode";
-
-    let style = document.getElementById(STYLE_ID);
-
-    if (enabled) {
-        if (!style) {
-            style = document.createElement("style");
-            style.id = STYLE_ID;
-            style.textContent = `
-                * {
-                    display: none !important;
-                }`
-                
-                ;
-            document.head.appendChild(style);
-        }
-    } else {
-        style?.remove();
-    }
-
+    const html = document.documentElement;
+    if (html) html.classList.toggle("hidden-by-extension", enabled);
 }
 
 function setGrayScale(enabled){
