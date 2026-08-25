@@ -49,6 +49,9 @@ Additionaly, reels are disabled, and the explore page posts are removed.
 - <img src="misc/images/zen_logo.png" width="12" > Zen browser
 
 Other Firefox-based browsers may work but have not been tested.
+- <img src="misc/images/chrome_logo.png" width="12"> Google Chrome
+
+The extension works on Google Chrome but is not available on the Chrome web store. Install it by enabling developer mode in `chrome://extensions/` 
 
 ## Privacy Notice
 NoScroll is simple and privacy friendly. It does not collect any data or require special permissions.
