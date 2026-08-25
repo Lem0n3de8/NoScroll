@@ -2,7 +2,7 @@
 
 A Firefox extension that removes Instagram's most distracting features while keeping messaging intact.
     
-[![Static Badge](https://img.shields.io/badge/Firefox_add--on-blue?style=for-the-badge&logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/noscrollinstagram/)
+[![Static Badge](https://img.shields.io/badge/Get_the_add--on-blue?style=for-the-badge&logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/noscrollinstagram/)
 [![Static Badge](https://img.shields.io/badge/Maintained%3F-yes-brightgreen?style=for-the-badge)](https://github.com/Lem0n3de8/NoScroll/commits)
 [![Static Badge](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
 [![Static Badge](https://img.shields.io/badge/Latest--version-0.6.0-blue?style=for-the-badge)](https://github.com/Lem0n3de8/NoScroll/releases)
