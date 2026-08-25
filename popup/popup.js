@@ -1,49 +1,32 @@
-/*
-    Process:
-        0. Retrieve the form object
-        1. Load saved data whe opening the form
-        2. Listen for any form submission
-        3. Save the new data in the local storage
-        4. Call the appropriate functions
-
-*/
-
-// 0. Get the Form
+// Get form inputs
 const settingsForm = document.getElementById("settings-form");
-
 const voidModeCheck = document.getElementById("void-mode-check");
-
 const homeStoriesCheck = document.getElementById("home-stories-check");
 const homeFeedCheck = document.getElementById("home-feed-check");
 const grayScaleCheck = document.getElementById("gray-scale-check")
 
-// 1. Load the saved data when opening the form
+// Load the saved data
 async function loadFormFromLocalStorage(){
     try{
         settings = await browser.storage.local.get([
-            "voidMode",
-
             "homeStories",
             "homeFeed",
-            "grayScale"
+            "grayScale",
+            "voidMode"
         ])
         console.log("Loaded settings");
-
-        voidModeCheck.checked = settings.voidMode ?? false;
 
         homeStoriesCheck.checked = settings.homeStories ?? false;
         homeFeedCheck.checked = settings.homeFeed ?? false;
         grayScaleCheck.checked = settings.grayScale ?? false;
+        voidModeCheck.checked = settings.voidMode ?? false;
     }catch(error){
         console.log(error);
     }
 }
 
-loadFormFromLocalStorage();
 
-
-// 2. Listen for form submission
-
+// Listen for form update (ie: user saves settings)
 settingsForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -52,24 +35,29 @@ settingsForm.addEventListener("submit", async (e) => {
     await saveFormToLocalStorage(formData);
 });
 
+
+// Save settings in local storage
 async function saveFormToLocalStorage(formData) {
     try {
-        const voidMode = voidModeCheck.checked;
-
+        
         const homeStories = homeStoriesCheck.checked;
         const homeFeed = homeFeedCheck.checked;
         const grayScale = grayScaleCheck.checked;
+        const voidMode = voidModeCheck.checked;
 
         await browser.storage.local.set({
-            voidMode,
-
             homeStories,
             homeFeed,
-            grayScale
+            grayScale,
+            voidMode
         });
 
         console.log("Settings saved!");
+
     }catch(error){
         console.log(error);
     }
 }
+
+// Initial load when popup appears
+loadFormFromLocalStorage();
