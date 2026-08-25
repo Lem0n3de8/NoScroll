@@ -22,7 +22,7 @@ cd NoScroll
 
 **Branch naming convention**
 
-Please use the following format for the name of your branch depending on the added content type:
+Please use the following list as an example for the name of your branch depending on the added content type:
 - `feature/add-setting`
 - `fix/popup-layout`
 - `docs/update-readme`
