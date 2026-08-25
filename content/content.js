@@ -1,3 +1,4 @@
+// Target properties
 const CONFIG = {
     instagramUrl: "https://www.instagram.com/",
     selectors:{
@@ -8,6 +9,12 @@ const CONFIG = {
     }
 }
 
+// Settings 
+function setStoriesHidden(hidden) {
+    const stories = document.querySelector(CONFIG.selectors.homePageStories);
+    if (!stories) return;
+    stories.classList.toggle("hidden-by-extension", hidden);
+}
 
 function hideHomeFeed(hidden){
     const posts = document.querySelectorAll("article");
@@ -25,31 +32,6 @@ function hideHomeFeed(hidden){
     } else {
         document.body.style.removeProperty("overflow");
     }
-}
-
-function blockReelsPage() {
-    if (window.location.href.includes('instagram.com/reels')){
-        window.location.href = CONFIG.instagramUrl;
-    }
-}
-
-function setStoriesHidden(hidden) {
-    const stories = document.querySelector(CONFIG.selectors.homePageStories);
-    if (!stories) return;
-
-    stories.classList.toggle("hidden-by-extension", hidden);
-}
-
-function setReelsTabHidden(){
-    const reelsTab = document.querySelector(CONFIG.selectors.reelsTab);
-    if (!reelsTab) return;
-
-    reelsTab.classList.add("hidden-by-extension");
-}
-
-function setVoidMode(enabled){
-    const html = document.documentElement;
-    if (html) html.classList.toggle("hidden-by-extension", enabled);
 }
 
 function setGrayScale(enabled){
@@ -85,6 +67,28 @@ function setGrayScale(enabled){
     }
 }
 
+function setVoidMode(enabled){
+    const html = document.documentElement;
+    if (html) html.classList.toggle("hidden-by-extension", enabled);
+}
+
+
+// Reels
+function setReelsTabHidden(){
+    const reelsTab = document.querySelector(CONFIG.selectors.reelsTab);
+    if (!reelsTab) return;
+
+    reelsTab.classList.add("hidden-by-extension");
+}
+
+function blockReelsPage() {
+    if (window.location.href.includes('instagram.com/reels')){
+        window.location.href = CONFIG.instagramUrl;
+    }
+}
+
+
+// Explore page
 function isExplorePage(){
     return location.pathname === "/explore/";
 }
@@ -114,6 +118,8 @@ function updateExplorePage(onExplorePage){
     }
 }
 
+
+
 async function applySettings() {
     const settings = await browser.storage.local.get();
     
@@ -125,23 +131,24 @@ async function applySettings() {
         hideHomeFeed(settings.homeFeed ?? false);
     }
 
-    // General settings
+    // User settings
     setVoidMode(settings.voidMode ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
     setGrayScale(settings.grayScale ?? false);
 
-    // auto enabled settings
-
+    // Auto enabled settings
     updateExplorePage(isExplorePage());
     blockReelsPage();
 }
 
 browser.storage.local.onChanged.addListener((changes) =>{
+    // When user settings change, rerun
     console.log("Detected changes", changes);
     applySettings();
 })
 
 const observer = new MutationObserver(() => {
+    // When DOM changes, rerun
     applySettings();
 });
 
