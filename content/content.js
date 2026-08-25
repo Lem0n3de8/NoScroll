@@ -27,10 +27,10 @@ function hideHomeFeed(hidden){
     }
 }
 
-function blockReelsPage(hidden ) {
-  if (hidden && window.location.href.includes('instagram.com/reels')) {
-    window.location.href = CONFIG.instagramUrl;
-  }
+function blockReelsPage() {
+    if (window.location.href.includes('instagram.com/reels')){
+        window.location.href = CONFIG.instagramUrl;
+    }
 }
 
 function setStoriesHidden(hidden) {
@@ -40,34 +40,16 @@ function setStoriesHidden(hidden) {
     stories.classList.toggle("hidden-by-extension", hidden);
 }
 
-function setReelsTabHidden(hidden){
+function setReelsTabHidden(){
     const reelsTab = document.querySelector(CONFIG.selectors.reelsTab);
     if (!reelsTab) return;
 
-    reelsTab.classList.toggle("hidden-by-extension", hidden);
+    reelsTab.classList.add("hidden-by-extension");
 }
 
 function setVoidMode(enabled){
-    const STYLE_ID = "instagram-void-mode";
-
-    let style = document.getElementById(STYLE_ID);
-
-    if (enabled) {
-        if (!style) {
-            style = document.createElement("style");
-            style.id = STYLE_ID;
-            style.textContent = `
-                * {
-                    display: none !important;
-                }`
-                
-                ;
-            document.head.appendChild(style);
-        }
-    } else {
-        style?.remove();
-    }
-
+    const html = document.documentElement;
+    if (html) html.classList.toggle("hidden-by-extension", enabled);
 }
 
 function setGrayScale(enabled){
@@ -146,12 +128,12 @@ async function applySettings() {
     // General settings
     setVoidMode(settings.voidMode ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
-    blockReelsPage(settings.redirectReels ?? false);
     setGrayScale(settings.grayScale ?? false);
 
     // auto enabled settings
 
     updateExplorePage(isExplorePage());
+    blockReelsPage();
 }
 
 browser.storage.local.onChanged.addListener((changes) =>{
