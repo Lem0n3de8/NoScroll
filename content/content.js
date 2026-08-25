@@ -88,13 +88,10 @@ function blockReelsPage() {
 }
 
 
-// Explore page
-function isExplorePage(){
-    return location.pathname === "/explore/";
-}
-
-function updateExplorePage(onExplorePage){
-    if (!onExplorePage){
+function updateExplorePage(){
+    console.log("ExplorePAGE:");
+    if (!(location.pathname === "/explore/")){
+        console.log("YOU ARE NOT ON EXPLORE PAGE");
         
         try{
             const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
@@ -105,6 +102,7 @@ function updateExplorePage(onExplorePage){
         }
     }
     else{
+        console.log("YOU ARE ON EXPLORE PAGE");
         const anchors = document.querySelectorAll("a");
         const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
 
@@ -137,7 +135,7 @@ async function applySettings() {
     setGrayScale(settings.grayScale ?? false);
 
     // Auto enabled settings
-    updateExplorePage(isExplorePage());
+    updateExplorePage();
     blockReelsPage();
 }
 
