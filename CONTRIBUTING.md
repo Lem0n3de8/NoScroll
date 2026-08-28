@@ -5,14 +5,14 @@ Welcome! If you are interested in contributing in any way to this extension, ple
 
 
 ## Working on the project
-Development should follow these important steps
+Development should follow these important steps:
 - Fork and clone your fork
 - Make changes
 - Verify changes work as intended
 - Open a Pull Request
 
 ### 1. Setting up the development environment
-Once you have an idea for a feature or a bugfix you have to fork the repository (see [here](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo) for more info) then clone the fork on your machine
+Once you have an idea for a feature or a bugfix, you have to fork the repository (see [here](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo) for help on how to fork a repository) then clone the fork on your machine
 ```bash
 git clone https://github.com/<your-username>/NoScroll.git
 cd NoScroll
@@ -26,11 +26,11 @@ Please use the following list as an example for the name of your branch dependin
 - `feature/add-setting`
 - `fix/popup-layout`
 - `docs/update-readme`
+- ...
 
 
-Make sure to switch to the `develop` branch then create a branch for yourself and start working on your changes
+Create a branch for yourself and start working on your changes
 ```bash
-git switch develop
 git switch -c <branch name>
 ```
 
@@ -40,7 +40,7 @@ There is no specific formatter or linter to use for this project. Follow the sty
 ### 4. Testing the changes
 Depending on the changes you've made, testing may require different steps but should follow this general procedure:
 - Verify that the popup is displayed as expected and reflects the changes you made
-- Verify that the affected UI elements are displayed as expected and reflect the changes you made
+- Verify that the affected webpage and UI elements are displayed as expected and reflect the changes you made
 - Verify that no undesired effects have appeared
 
 If these checks are OK, you can open a pull request!
@@ -49,10 +49,9 @@ If these checks are OK, you can open a pull request!
 Once you are satisfied with the changes you've made and you checked that the code works, you can open a pull request(PR) to request your code to be merged to this repository.
 
 1. Go to the [PR tab](https://github.com/Lem0n3de8/NoScroll/pulls) of this repository.
-2. You should see a box inviting you to create a PR for your branch.
+2. You should see a button to create a PR for your branch.
 3. Click on it and describe the changes you've made.
-4. Make sure the target branch is `develop` and not `main`.
-5. Submit your PR and wait for eventual comments/reviews.
+4. Submit your PR and wait for eventual comments/reviews.
 
 
 ## Reporting bugs and requesting features
