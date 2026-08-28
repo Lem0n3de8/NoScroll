@@ -58,7 +58,7 @@ First, you need to load the extension in your browser. For firefox based browser
 
 The extension should be loaded in your browser
 
-Depending on the changes you've made, testing may require different steps but should follow these important steps:
+Depending on the changes you've made, testing may require different steps but must include these important steps:
 - Verify that the popup is displayed as expected and reflects the changes you made
 - Verify that the affected webpage and UI elements are displayed as expected and reflect the changes you made
 - Verify that no undesired effects have appeared
@@ -68,7 +68,7 @@ Once these changes pass, you're ready to open a pull request!
 ### 5. Opening a pull request
 Once you are satisfied with the changes you've made and you checked that the code works, you can open a pull request(PR) to request your code to be merged to this repository.
 
-1. Go to the [PR tab](https://github.com/Lem0n3de8/NoScroll/pulls) of this repository.
+1. Go to the [PR tab](https://github.com/Lem0n3de8/NoScroll/pulls) of the NoScroll repository.
 2. You should see a button to create a PR for your branch.
 3. Click on it and describe the changes you've made.
 4. Submit your PR and wait for eventual comments/reviews.

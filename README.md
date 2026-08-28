@@ -44,11 +44,13 @@ Additionaly, reels are disabled, and the explore page posts are removed.
 
 ## Currently Supported Browsers
 
-**Officially Supported:**
+**Officially Supported**
 - <img src="misc/images/firefox_logo.png" width="12" > Firefox
 - <img src="misc/images/zen_logo.png" width="12" > Zen browser
 
 Other Firefox-based browsers may work but have not been tested.
+
+**Not officially supported**
 - <img src="misc/images/chrome_logo.png" width="12"> Google Chrome
 
 The extension works on Google Chrome but is not available on the Chrome web store. Install it by enabling developer mode in `chrome://extensions/` 
