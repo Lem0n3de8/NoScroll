@@ -3,6 +3,16 @@
 ## Introduction
 Welcome! If you are interested in contributing in any way to this extension, please read this document.
 
+## Table of content
+- [Working on the project](#working-on-the-project)
+    - [1. Setting up the development environment](#1-setting-up-the-development-environment)
+    - [2. Creating a branch](#2-creating-a-branch)
+    - [3. Code style](#3-code-style)
+    - [4. Testing the changes](#4-testing-the-changes)
+    - [5. Opening a pull request](#5-opening-a-pull-request)
+- [Reporting bugs and requesting features](#reporting-bugs-and-requesting-features)
+- [Suggested contributions](#suggested-contributions)
+- [Questions](#questions)
 
 ## Working on the project
 Development should follow these important steps:
@@ -12,7 +22,9 @@ Development should follow these important steps:
 - Open a Pull Request
 
 ### 1. Setting up the development environment
-Once you have an idea for a feature or a bugfix, you have to fork the repository (see [here](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo) for help on how to fork a repository) then clone the fork on your machine
+Once you have an idea for a feature or a bugfix, you have to fork the repository (see [Github's documentation](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo) on working with forks) then clone the fork on your machine
+
+You will need Git and a Firefox based browser for development and testing.
 ```bash
 git clone https://github.com/<your-username>/NoScroll.git
 cd NoScroll
@@ -29,7 +41,7 @@ Please use the following list as an example for the name of your branch dependin
 - ...
 
 
-Create a branch for yourself and start working on your changes
+Create a new branch for your changes and start working on it
 ```bash
 git switch -c <branch name>
 ```
@@ -38,12 +50,20 @@ git switch -c <branch name>
 There is no specific formatter or linter to use for this project. Follow the style already used in the surrounding code and keep changes consistent with the existing project.
 
 ### 4. Testing the changes
-Depending on the changes you've made, testing may require different steps but should follow this general procedure:
+First, you need to load the extension in your browser. For firefox based browsers, follow these steps:
+- Go to `about:debugging` in the URL bar
+- Click on `This Firefox` in the left hand menu
+- Click on the `Load Temporary Add-on...` button
+- Go to the directory where you made your changes (most likely `NoScroll`)
+
+The extension should be loaded in your browser
+
+Depending on the changes you've made, testing may require different steps but should follow these important steps:
 - Verify that the popup is displayed as expected and reflects the changes you made
 - Verify that the affected webpage and UI elements are displayed as expected and reflect the changes you made
 - Verify that no undesired effects have appeared
 
-If these checks are OK, you can open a pull request!
+Once these changes pass, you're ready to open a pull request!
 
 ### 5. Opening a pull request
 Once you are satisfied with the changes you've made and you checked that the code works, you can open a pull request(PR) to request your code to be merged to this repository.
