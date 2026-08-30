@@ -1,3 +1,4 @@
+// Target properties
 const CONFIG = {
     instagramUrl: "https://www.instagram.com/",
     selectors:{
@@ -8,6 +9,12 @@ const CONFIG = {
     }
 }
 
+// Settings 
+function setStoriesHidden(hidden) {
+    const stories = document.querySelector(CONFIG.selectors.homePageStories);
+    if (!stories) return;
+    stories.classList.toggle("hidden-by-extension", hidden);
+}
 
 function hideHomeFeed(hidden){
     const posts = document.querySelectorAll("article");
@@ -25,49 +32,6 @@ function hideHomeFeed(hidden){
     } else {
         document.body.style.removeProperty("overflow");
     }
-}
-
-function blockReelsPage(hidden ) {
-  if (hidden && window.location.href.includes('instagram.com/reels')) {
-    window.location.href = CONFIG.instagramUrl;
-  }
-}
-
-function setStoriesHidden(hidden) {
-    const stories = document.querySelector(CONFIG.selectors.homePageStories);
-    if (!stories) return;
-
-    stories.classList.toggle("hidden-by-extension", hidden);
-}
-
-function setReelsTabHidden(hidden){
-    const reelsTab = document.querySelector(CONFIG.selectors.reelsTab);
-    if (!reelsTab) return;
-
-    reelsTab.classList.toggle("hidden-by-extension", hidden);
-}
-
-function setVoidMode(enabled){
-    const STYLE_ID = "instagram-void-mode";
-
-    let style = document.getElementById(STYLE_ID);
-
-    if (enabled) {
-        if (!style) {
-            style = document.createElement("style");
-            style.id = STYLE_ID;
-            style.textContent = `
-                * {
-                    display: none !important;
-                }`
-                
-                ;
-            document.head.appendChild(style);
-        }
-    } else {
-        style?.remove();
-    }
-
 }
 
 function setGrayScale(enabled){
@@ -103,12 +67,31 @@ function setGrayScale(enabled){
     }
 }
 
-function isExplorePage(){
-    return location.pathname === "/explore/";
+function setVoidMode(enabled){
+    const html = document.documentElement;
+    if (html) html.classList.toggle("hidden-by-extension", enabled);
 }
 
-function updateExplorePage(onExplorePage){
-    if (!onExplorePage){
+
+// Reels
+function setReelsTabHidden(){
+    const reelsTab = document.querySelector(CONFIG.selectors.reelsTab);
+    if (!reelsTab) return;
+
+    reelsTab.classList.add("hidden-by-extension");
+}
+
+function blockReelsPage() {
+    if (window.location.href.includes('instagram.com/reels')){
+        window.location.href = CONFIG.instagramUrl;
+    }
+}
+
+
+function updateExplorePage(){
+    console.log("ExplorePAGE:");
+    if (!(location.pathname === "/explore/")){
+        console.log("YOU ARE NOT ON EXPLORE PAGE");
         
         try{
             const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
@@ -119,6 +102,7 @@ function updateExplorePage(onExplorePage){
         }
     }
     else{
+        console.log("YOU ARE ON EXPLORE PAGE");
         const anchors = document.querySelectorAll("a");
         const loadingWheel = document.querySelector(CONFIG.selectors.loadingState);
 
@@ -132,6 +116,8 @@ function updateExplorePage(onExplorePage){
     }
 }
 
+
+
 async function applySettings() {
     const settings = await browser.storage.local.get();
     
@@ -143,23 +129,24 @@ async function applySettings() {
         hideHomeFeed(settings.homeFeed ?? false);
     }
 
-    // General settings
+    // User settings
     setVoidMode(settings.voidMode ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
-    blockReelsPage(settings.redirectReels ?? false);
     setGrayScale(settings.grayScale ?? false);
 
-    // auto enabled settings
-
-    updateExplorePage(isExplorePage());
+    // Auto enabled settings
+    updateExplorePage();
+    blockReelsPage();
 }
 
 browser.storage.local.onChanged.addListener((changes) =>{
+    // When user settings change, rerun
     console.log("Detected changes", changes);
     applySettings();
 })
 
 const observer = new MutationObserver(() => {
+    // When DOM changes, rerun
     applySettings();
 });
 
