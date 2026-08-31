@@ -76,7 +76,9 @@ function setVoidMode(enabled){
 
 function hideComments(enabled){
     const comments = document.querySelectorAll(CONFIG.selectors.comments);
+    const ul = document.querySelectorAll("ul")
 
+    // Hide comment button
     for (const comment of comments){
         // Comment svg span
         const span = comment.closest('span');
@@ -88,6 +90,11 @@ function hideComments(enabled){
 
         span?.classList.toggle("hidden-by-extension", enabled);
         nextSpan?.classList.toggle("hidden-by-extension", enabled);
+    }
+
+    // Hide comments in posts
+    if (window.location.href.includes('instagram.com/p')){
+        ul[0].classList.toggle("hidden-by-extension", true);
     }
 }
 
