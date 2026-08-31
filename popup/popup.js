@@ -4,6 +4,7 @@ const voidModeCheck = document.getElementById("void-mode-check");
 const homeStoriesCheck = document.getElementById("home-stories-check");
 const homeFeedCheck = document.getElementById("home-feed-check");
 const grayScaleCheck = document.getElementById("gray-scale-check")
+const hideCommentsCheck = document.getElementById("hide-comments-check");
 
 // Load the saved data
 async function loadFormFromLocalStorage(){
@@ -12,7 +13,8 @@ async function loadFormFromLocalStorage(){
             "homeStories",
             "homeFeed",
             "grayScale",
-            "voidMode"
+            "voidMode",
+            "hideComments"
         ])
         console.log("Loaded settings");
 
@@ -20,6 +22,7 @@ async function loadFormFromLocalStorage(){
         homeFeedCheck.checked = settings.homeFeed ?? false;
         grayScaleCheck.checked = settings.grayScale ?? false;
         voidModeCheck.checked = settings.voidMode ?? false;
+        hideCommentsCheck.checked = settings.hideComments ?? false;
     }catch(error){
         console.log(error);
     }
@@ -44,12 +47,14 @@ async function saveFormToLocalStorage(formData) {
         const homeFeed = homeFeedCheck.checked;
         const grayScale = grayScaleCheck.checked;
         const voidMode = voidModeCheck.checked;
+        const hideComments = hideCommentsCheck.checked;
 
         await browser.storage.local.set({
             homeStories,
             homeFeed,
             grayScale,
-            voidMode
+            voidMode,
+            hideComments
         });
 
         console.log("Settings saved!");

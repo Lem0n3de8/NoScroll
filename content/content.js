@@ -5,7 +5,8 @@ const CONFIG = {
         homePageStories: '[data-pagelet="story_tray"]',
         reelsTab: 'a[href="/reels/"]',
         exploreTab: 'a[href="/explore/"]',
-        loadingState: '[data-visualcompletion="loading-state"]'
+        loadingState: '[data-visualcompletion="loading-state"]',
+        comments: 'aria-label="Comment"'
     }
 }
 
@@ -72,6 +73,13 @@ function setVoidMode(enabled){
     if (html) html.classList.toggle("hidden-by-extension", enabled);
 }
 
+function hideComments(enabled){
+    const comments = document.querySelectorAll(CONFIG.comments);
+
+    for (const comment of comments){
+        comment.classList.toggle("hidden-by-extension", enabled)
+    }
+}
 
 // Reels
 function setReelsTabHidden(){
@@ -133,6 +141,7 @@ async function applySettings() {
     setVoidMode(settings.voidMode ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
     setGrayScale(settings.grayScale ?? false);
+    hideComments(settings.hideComments ?? false);
 
     // Auto enabled settings
     updateExplorePage();
