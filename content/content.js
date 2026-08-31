@@ -6,7 +6,8 @@ const CONFIG = {
         reelsTab: 'a[href="/reels/"]',
         exploreTab: 'a[href="/explore/"]',
         loadingState: '[data-visualcompletion="loading-state"]',
-        comments: '[aria-label="Comment"]'
+        comments: '[aria-label="Comment"]',
+        button: '[role="button"]'
     }
 }
 
@@ -75,8 +76,15 @@ function setVoidMode(enabled){
 
 function hideComments(enabled){
     const comments = document.querySelectorAll(CONFIG.selectors.comments);
+
     for (const comment of comments){
+        // Comment svg span
         const span = comment.closest('span');
+        // Comment count span
+        const nextSpan = span.nextElementSibling?.matches('span')
+            ? span.nextElementSibling
+            : null;
+        nextSpan.classList.toggle("hidden-by-extension", enabled);
         span.classList.toggle("hidden-by-extension", enabled);
     }
 }
