@@ -171,9 +171,14 @@ browser.storage.local.onChanged.addListener((changes) =>{
     applySettings();
 })
 
+let applyTimeout;
+
 const observer = new MutationObserver(() => {
-    // When DOM changes, rerun
-    applySettings();
+    clearTimeout(applyTimeout);
+
+    applyTimeout = setTimeout(() => {
+        applySettings();
+    }, 100);
 });
 
 observer.observe(document.body, {
