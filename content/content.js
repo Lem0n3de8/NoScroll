@@ -76,7 +76,7 @@ function setVoidMode(enabled){
 
 function hideComments(enabled){
     const comments = document.querySelectorAll(CONFIG.selectors.comments);
-    const ul = document.querySelectorAll("ul")
+    const hr = document.querySelector("hr")
 
     // Hide comment button
     for (const comment of comments){
@@ -94,7 +94,19 @@ function hideComments(enabled){
 
     // Hide comments in posts
     if (window.location.href.includes('instagram.com/p')){
-        ul[0].classList.toggle("hidden-by-extension", enabled);
+        // Post that contain list of images
+        if (window.location.href.includes("?img_index=")){
+            const nextDiv = hr?.nextElementSibling?.matches('div')
+                ? hr?.nextElementSibling
+                : null;
+
+            nextDiv?.classList.toggle("hidden-by-extension", enabled);
+        // Post that contains a video or a single image
+        }else{
+            const ul = document.querySelectorAll("ul")
+            ul[0]?.classList.toggle("hidden-by-extension", enabled);
+        }
+
     }
 }
 
