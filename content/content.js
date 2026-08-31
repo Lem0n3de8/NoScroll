@@ -80,12 +80,14 @@ function hideComments(enabled){
     for (const comment of comments){
         // Comment svg span
         const span = comment.closest('span');
+
         // Comment count span
-        const nextSpan = span.nextElementSibling?.matches('span')
-            ? span.nextElementSibling
+        const nextSpan = span?.nextElementSibling?.matches('span')
+            ? span?.nextElementSibling
             : null;
-        nextSpan.classList.toggle("hidden-by-extension", enabled);
-        span.classList.toggle("hidden-by-extension", enabled);
+
+        span?.classList.toggle("hidden-by-extension", enabled);
+        nextSpan?.classList.toggle("hidden-by-extension", enabled);
     }
 }
 
