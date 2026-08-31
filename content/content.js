@@ -94,23 +94,24 @@ function hideCommentButtons(enabled){
 function hideCommentSection(enabled){
     if (!location.pathname.startsWith("/p/")) return;
 
-    // Carousel post
-    if (window.location.href.includes("?img_index=")){
-        console.warn("CARROUSEL POST");
-        const hr = document.querySelector("hr");
-        console.warn("HR ELEMENT:", hr);
-        const nextDiv = hr?.nextElementSibling?.matches('div')
-            ? hr?.nextElementSibling
-            : null;
-        
-        nextDiv?.classList.toggle("hidden-by-extension", enabled);
+    const ULs = document.querySelectorAll("ul");
 
-    // Video or single-image post
-    }else{
-        const ul = document.querySelector("ul");
-        console.warn("UL ELEMENT:", ul);
-        ul?.classList.toggle("hidden-by-extension", enabled);
+    for (const ul of ULs){
+        if (
+            ul?.classList.contains("_a9z6") ||
+            ul?.classList.contains("_a9z9") ||
+            ul?.classList.contains("_a9za")
+        ) {
+            ul.classList.toggle("hidden-by-extension", enabled);
+        }
     }
+    const h2 = [...document.querySelectorAll("h2")]
+    .find(el => el.textContent.trim() === "No comments yet.");
+    const span = [...document.querySelectorAll("span")]
+    .find(el => el.textContent.trim() === "Start the conversation.")
+    h2?.classList.toggle("hidden-by-extension", enabled);
+    span?.classList.toggle("hidden-by-extension", enabled)
+
 }
 
 // Reels
