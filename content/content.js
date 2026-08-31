@@ -74,39 +74,42 @@ function setVoidMode(enabled){
     if (html) html.classList.toggle("hidden-by-extension", enabled);
 }
 
-function hideComments(enabled){
+function hideCommentButtons(enabled){
     const comments = document.querySelectorAll(CONFIG.selectors.comments);
-    const hr = document.querySelector("hr")
 
-    // Hide comment button
     for (const comment of comments){
-        // Comment svg span
+        // Comment SVG span
         const span = comment.closest('span');
 
         // Comment count span
         const nextSpan = span?.nextElementSibling?.matches('span')
-            ? span?.nextElementSibling
+            ? span.nextElementSibling
             : null;
 
         span?.classList.toggle("hidden-by-extension", enabled);
         nextSpan?.classList.toggle("hidden-by-extension", enabled);
     }
+}
 
-    // Hide comments in posts
-    if (window.location.href.includes('instagram.com/p')){
-        // Post that contain list of images
-        if (window.location.href.includes("?img_index=")){
-            const nextDiv = hr?.nextElementSibling?.matches('div')
-                ? hr?.nextElementSibling
-                : null;
+function hideCommentSection(enabled){
+    if (!location.pathname.startsWith("/p/")) return;
 
-            nextDiv?.classList.toggle("hidden-by-extension", enabled);
-        // Post that contains a video or a single image
-        }else{
-            const ul = document.querySelectorAll("ul")
-            ul[0]?.classList.toggle("hidden-by-extension", enabled);
-        }
+    // Carousel post
+    if (window.location.href.includes("?img_index=")){
+        console.warn("CARROUSEL POST");
+        const hr = document.querySelector("hr");
+        console.warn("HR ELEMENT:", hr);
+        const nextDiv = hr?.nextElementSibling?.matches('div')
+            ? hr?.nextElementSibling
+            : null;
+        
+        nextDiv?.classList.toggle("hidden-by-extension", enabled);
 
+    // Video or single-image post
+    }else{
+        const ul = document.querySelector("ul");
+        console.warn("UL ELEMENT:", ul);
+        ul?.classList.toggle("hidden-by-extension", enabled);
     }
 }
 
@@ -170,7 +173,8 @@ async function applySettings() {
     setVoidMode(settings.voidMode ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
     setGrayScale(settings.grayScale ?? false);
-    hideComments(settings.hideComments ?? false);
+    hideCommentButtons(settings.hideComments ?? false);
+    hideCommentSection(settings.hideComments ?? false);
 
     // Auto enabled settings
     updateExplorePage();
