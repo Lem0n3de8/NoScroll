@@ -94,7 +94,7 @@ function hideComments(enabled){
 
     // Hide comments in posts
     if (window.location.href.includes('instagram.com/p')){
-        ul[0].classList.toggle("hidden-by-extension", true);
+        ul[0].classList.toggle("hidden-by-extension", enabled);
     }
 }
 
