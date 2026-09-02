@@ -1,6 +1,6 @@
 ---
 name: Feature template
-about: Create a report to help us improve
+about: Open a pull request to submit code
 title: ""
 labels: 
 assignees: ''
