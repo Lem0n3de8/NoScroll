@@ -5,7 +5,9 @@ const CONFIG = {
         homePageStories: '[data-pagelet="story_tray"]',
         reelsTab: 'a[href="/reels/"]',
         exploreTab: 'a[href="/explore/"]',
-        loadingState: '[data-visualcompletion="loading-state"]'
+        loadingState: '[data-visualcompletion="loading-state"]',
+        comments: '[aria-label="Comment"]',
+        button: '[role="button"]'
     }
 }
 
@@ -72,6 +74,45 @@ function setVoidMode(enabled){
     if (html) html.classList.toggle("hidden-by-extension", enabled);
 }
 
+function hideCommentButtons(enabled){
+    const comments = document.querySelectorAll(CONFIG.selectors.comments);
+
+    for (const comment of comments){
+        // Comment SVG span
+        const span = comment.closest('span');
+
+        // Comment count span
+        const nextSpan = span?.nextElementSibling?.matches('span')
+            ? span.nextElementSibling
+            : null;
+
+        span?.classList.toggle("hidden-by-extension", enabled);
+        nextSpan?.classList.toggle("hidden-by-extension", enabled);
+    }
+}
+
+function hideCommentSection(enabled){
+    if (!location.pathname.startsWith("/p/")) return;
+
+    const ULs = document.querySelectorAll("ul");
+
+    for (const ul of ULs){
+        if (
+            ul?.classList.contains("_a9z6") ||
+            ul?.classList.contains("_a9z9") ||
+            ul?.classList.contains("_a9za")
+        ) {
+            ul.classList.toggle("hidden-by-extension", enabled);
+        }
+    }
+    const h2 = [...document.querySelectorAll("h2")]
+    .find(el => el.textContent.trim() === "No comments yet.");
+    const span = [...document.querySelectorAll("span")]
+    .find(el => el.textContent.trim() === "Start the conversation.")
+    h2?.classList.toggle("hidden-by-extension", enabled);
+    span?.classList.toggle("hidden-by-extension", enabled)
+
+}
 
 // Reels
 function setReelsTabHidden(){
@@ -133,6 +174,8 @@ async function applySettings() {
     setVoidMode(settings.voidMode ?? false);
     setReelsTabHidden(settings.sideReels ?? false);
     setGrayScale(settings.grayScale ?? false);
+    hideCommentButtons(settings.hideComments ?? false);
+    hideCommentSection(settings.hideComments ?? false);
 
     // Auto enabled settings
     updateExplorePage();
@@ -145,9 +188,14 @@ browser.storage.local.onChanged.addListener((changes) =>{
     applySettings();
 })
 
+let applyTimeout;
+
 const observer = new MutationObserver(() => {
-    // When DOM changes, rerun
-    applySettings();
+    clearTimeout(applyTimeout);
+
+    applyTimeout = setTimeout(() => {
+        applySettings();
+    }, 100);
 });
 
 observer.observe(document.body, {
