@@ -1,7 +1,7 @@
 ---
 name: Feature template
 about: Open a pull request to submit code
-title: ""
+title: "[FEATURE]"
 labels: 
 assignees: ''
 
