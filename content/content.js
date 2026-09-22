@@ -114,6 +114,19 @@ function hideCommentSection(enabled){
 
 }
 
+function muteAudio(enabled){
+    console.warn("FUNCTION MUTEAUDIO IS CALLED", enabled);
+    if (enabled){
+        console.log("MUTED AUDIO IS ENABLED");
+        const videos = document.querySelectorAll("video");
+
+        for (const video of videos){
+            console.log(video);
+            video.muted = true;
+            video.volume = 0;
+        };
+    }
+}
 // Reels
 function setReelsTabHidden(){
     const reelsTab = document.querySelector(CONFIG.selectors.reelsTab);
@@ -176,6 +189,7 @@ async function applySettings() {
     setGrayScale(settings.grayScale ?? false);
     hideCommentButtons(settings.hideComments ?? false);
     hideCommentSection(settings.hideComments ?? false);
+    muteAudio(settings.muteAudio ?? false);
 
     // Auto enabled settings
     updateExplorePage();
