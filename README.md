@@ -5,7 +5,7 @@ A Firefox extension that removes Instagram's most distracting features while kee
 [![Static Badge](https://img.shields.io/badge/Firefox_add--on-blue?style=for-the-badge&logo=firefox)](https://addons.mozilla.org/en-US/firefox/addon/noscrollinstagram/)
 [![Static Badge](https://img.shields.io/badge/Maintained%3F-yes-brightgreen?style=for-the-badge)](https://github.com/Lem0n3de8/NoScroll/commits)
 [![Static Badge](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
-[![Static Badge](https://img.shields.io/badge/Latest--version-0.6.1-blue?style=for-the-badge)](https://github.com/Lem0n3de8/NoScroll/releases)
+[![Static Badge](https://img.shields.io/badge/Latest--version-0.7.0-blue?style=for-the-badge)](https://github.com/Lem0n3de8/NoScroll/releases)
       
 ## Table of Contents
 
@@ -31,19 +31,23 @@ NoScroll is a content blocker for Instagram available for Firefox. With a simple
 ## Current Features:
 Contains a simple popup user interface to toggle settings:
 
-<img src="misc/images/ui_preview_0.5.0.png" width="300">
+<img src="misc/images/ui_preview_0.7.0.png" width="300">
 
 | Setting                  | Description |
 | ------------------------ | ------------------------ |
-| Sidebar reels icon       | Hide the reel icon from the left sidebar |
 | Home page stories        | Hide the stories at the top of the Home page |
-| Redirect `/reels` page   | Redirect any URL containing `instagram/reels` to `instagram.com` |
-| Home page feed | Hide the posts and reels suggested in the home page |
-| Apply grayscale | Add grayscale covering the whole website |
+| Home page feed           | Hide the home page posts and reels |
+| Apply grayscale          | Add grayscale covering the whole website |
 | Void mode                | Turn the page blank |
+| Hide comments            | Disable comments button and comments section |
+| Mute audio               | Turn off all sound |
 
-There are also some contents that are removed by default: 
-- Explore page posts
+
+There is also some content removed by default:
+- Reels (redirected to homepage)
+- Reels sidebar button
+- Explore page posts suggestions (search feature still functional)
+
 
 ## Currently Supported Browsers
 
@@ -53,23 +57,16 @@ There are also some contents that are removed by default:
 
 Other Firefox-based browsers may work but have not been tested.
 
+**Experimental:** Starting with v0.7.0, I'm trying to add support for android
+
 ## Privacy Notice
 NoScroll is simple and privacy friendly. It does not collect any data or require special permissions.
 
 ## Help Development
 
-### Pull Requests
+**For more information, visit the [Contributing page](https://github.com/Lem0n3de8/NoScroll?tab=contributing-ov-file).**
 
-Please open an issue before starting work on a feature or significant change.
-
-All pull requests should target the `develop` branch rather than `main`.
-
-Suggested Improvements:
-- Test the extension on other browsers
-- Improve popup CSS
-
-### Submit an Issue
-To submit an issue, check the [issues tab](https://github.com/Lem0n3de8/NoScroll/issues).
+**To submit an issue, check the [issues tab](https://github.com/Lem0n3de8/NoScroll/issues).**
 
 ----
 
