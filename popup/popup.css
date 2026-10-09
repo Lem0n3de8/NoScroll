@@ -6,7 +6,7 @@ body {
     padding: 12px;
 }
 
-.top_lable {
+.top_label {
     color: #ffffff;
     font-size: 14px;
     font-weight: 600;
@@ -33,7 +33,7 @@ body {
 }
 
 .form_checkbox {
-    accent-color: #9333ea;
+    accent-color: gray;
     width: 16px;
     height: 16px;
     cursor: pointer;
@@ -55,7 +55,7 @@ label {
     padding: 7px;
     border: none;
     border-radius: 20px;
-    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    background: grey;
     color: #ffffff;
     font-size: 12px;
     font-weight: 600;
