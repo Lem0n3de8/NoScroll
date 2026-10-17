@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" content="width=600">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoScroll</title>
     <link rel="stylesheet" href="popup.css">
     <script src="popup.js" defer></script>
 </head>
 <body>
-    <div id="popup-content">    
-
+    <div id="popup-content">
         <div id="settings-div">
+            <p class="top_label">Settings</p>
+            <div class="break_line"></div>
+
             <form id="settings-form">
-                <div class="form-input">
-                    <input type="checkbox" id="home-stories-check" name="home-stories-check">
-                    <label for="home-stories-check">home page stories</label>
-                </div>
-                <div class="form-input">
-                    <input type="checkbox" id="home-feed-check" name="home-feed-check">
-                    <label for="home-feed-check">home page feed</label>
-                </div>
-                <div class="form-input">
-                    <input type="checkbox" id="gray-scale-check" name="gray-scale-check">
-                    <label for="gray-scale-check">apply gray scale</label>
-                </div>
-                <div class="form-input">
-                    <input type="checkbox" name="void-mode-check" id="void-mode-check">
-                    <label for="void-mode-check">void mode</label>
-                </div>
-                <div class="form-input">
-                    <input type="checkbox" name="hide-comments-check" id="hide-comments-check">
-                    <label for="hide-comments-check">hide comments</label>
-                </div>
-                <div class="form-input">
-                    <input type="checkbox" name="mute-audio-check" id="mute-audio-check">
-                    <label for="mute-audio-check">mute audio</label>
-                </div>
-                <div class="form-input form-save" >
-                    <input type="submit" value="Apply settings">
+                <div class="container">
+                    <div class="form-input">
+                        <input type="checkbox" class="form_checkbox" id="home-stories-check" name="home-stories-check">
+                        <label for="home-stories-check">Home page stories</label>
+                    </div>
+
+                    <div class="form-input">
+                        <input type="checkbox" class="form_checkbox" id="home-feed-check" name="home-feed-check">
+                        <label for="home-feed-check">Home page feed</label>
+                    </div>
+
+                    <div class="form-input">
+                        <input type="checkbox" class="form_checkbox" id="gray-scale-check" name="gray-scale-check">
+                        <label for="gray-scale-check">Apply gray scale</label>
+                    </div>
+
+                    <div class="form-input">
+                        <input type="checkbox" class="form_checkbox" id="void-mode-check" name="void-mode-check">
+                        <label for="void-mode-check">Void mode</label>
+                    </div>
+
+                    <div class="form-input">
+                        <input type="checkbox" class="form_checkbox" id="hide-comments-check" name="hide-comments-check">
+                        <label for="hide-comments-check">Hide comments</label>
+                    </div>
+
+                    <div class="form-input">
+                        <input type="checkbox" class="form_checkbox" id="mute-audio-check" name="mute-audio-check">
+                        <label for="mute-audio-check">Mute audio</label>
+                    </div>
+
+                    <div class="form-save">
+                        <input class="btn" type="submit" value="Apply settings">
+                    </div>
                 </div>
             </form>
         </div>
